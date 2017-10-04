@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="{{ path("homepage") }}">Accueil</a> |
+    <a href="{{ path("admin_index") }}">Admin</a>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="{{ path('logout') }}">Déconnexion</a>
+    {% endif %}
+    <h1>Article edit</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_index') }}">Back to the list</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

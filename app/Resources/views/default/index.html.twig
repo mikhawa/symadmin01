@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="{{ path("homepage") }}">Accueil</a> |
+    <a href="{{ path("admin_index") }}">Admin</a><hr/>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="{{ path('logout') }}">Déconnexion</a>
+    {% endif %}
+{% for article in articles %}
+    <h3>{{ article.titre }}</h3>
+    <p>{{ article.descr }}</p>
+    <p>{{ article.ladate|date('Y-m-d H:i:s') }} par {{ article.user.login }} </p><hr/>
+{% endfor %}
+{% endblock %}
