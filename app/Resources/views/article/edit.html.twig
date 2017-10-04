@@ -2,7 +2,7 @@
 
 {% block body %}
     <a href="{{ path("homepage") }}">Accueil</a> |
-    <a href="{{ path("admin_index") }}">Admin</a>
+    <a href="{{ path("admin_index") }}">Admin</a> |
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <a href="{{ path('logout') }}">Déconnexion</a>
     {% endif %}
@@ -18,9 +18,11 @@
             <a href="{{ path('admin_index') }}">Back to the list</a>
         </li>
         <li>
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
             {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
+            {% endif %}
         </li>
     </ul>
 {% endblock %}

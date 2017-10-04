@@ -2,7 +2,7 @@
 
 {% block body %}
     <a href="{{ path("homepage") }}">Accueil</a> |
-    <a href="{{ path("admin_index") }}">Admin</a>
+    <a href="{{ path("admin_index") }}">Admin</a> |
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <a href="{{ path('logout') }}">Déconnexion</a>
     {% endif %}

@@ -2,7 +2,7 @@
 
 {% block body %}
     <a href="{{ path("homepage") }}">Accueil</a> |
-    <a href="{{ path("admin_index") }}">Admin</a>
+    <a href="{{ path("admin_index") }}">Admin</a> |
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <a href="{{ path('logout') }}">Déconnexion</a>
     {% endif %}
@@ -26,6 +26,7 @@
                 <td>{{ article.descr }}</td>
                 <td>{% if article.ladate %}{{ article.ladate|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
                     <ul>
                         <li>
                             <a href="{{ path('admin_show', { 'id': article.id }) }}">show</a>
@@ -34,15 +35,17 @@
                             <a href="{{ path('admin_edit', { 'id': article.id }) }}">edit</a>
                         </li>
                     </ul>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
+{% if is_granted('ROLE_SUPER_ADMIN') %}
     <ul>
         <li>
             <a href="{{ path('admin_new') }}">Create a new article</a>
         </li>
     </ul>
+{% endif %}
 {% endblock %}

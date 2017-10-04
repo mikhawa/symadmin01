@@ -2,9 +2,7 @@
 {% block body %}
 <a href="{{ path("homepage") }}">Accueil</a> |
 <a href="{{ path("admin_index") }}">Admin</a><hr/>
-{% if is_granted('ROLE_ADMIN') %}
-    <a href="{{ path('logout') }}">Delete</a>
-{% endif %}
+
 {% if error %}
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
